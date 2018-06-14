@@ -78,9 +78,9 @@ translator:
   comment_format:	#menu 提示 字碼 顯示
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
 
-abc_segmentor:
-  extra_tags:
-    - reverse_lookup  # 與拼音（反查碼）混打
+#abc_segmentor:
+#  extra_tags:
+#    - reverse_lookup  # 注音用鍵太多（反查碼），無法與嘸蝦米混打
 
 reverse_lookup:
   dictionary: terra_pinyin
