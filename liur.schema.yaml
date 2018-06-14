@@ -33,7 +33,7 @@ engine:		# 輸入引擎設定，即掛接組件的「處方」
     - recognizer	# ※ 與 matcher 搭配，處理符合特定規則的 輸入碼，如 「網址、反查」 等
     - key_binder	# ※ 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
     - speller	# ※ 拼寫，字符按鍵，編輯輸入碼,默認只接受小寫拉丁字母作爲輸入碼
-    - punctuator	# ※ 句讀，將單個字符按鍵直接映射爲「文字︰符號」
+#    - punctuator	# ※ 句讀，將單個字符按鍵直接映射爲「文字︰符號」
     - selector	# ※ 選字，處理數字選字鍵、上、下候選定位、換頁鍵
     - navigator	# ※ 輸入欄內的 光標移動鍵
     - express_editor	# ※ 編輯器，處理空格、回車上屏、回退鍵等
@@ -42,21 +42,22 @@ engine:		# 輸入引擎設定，即掛接組件的「處方」
     - matcher	# ※ 標識_符合特定規則的段落，如網址、反查等
     - affix_segmentor@reverse_lookup	#反查掛接
     - abc_segmentor	# ※ 標識_常規的文字段落
-    - punct_segmentor	# ※ 標識_句讀段落
+#    - punct_segmentor	# ※ 標識_句讀段落
     - fallback_segmentor	# ※ 標識_其他未標識段落
   translators:	# 三、這批組件翻譯特定類型的編碼段爲一組候選文字
-    - echo_translator	# ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
-    - punct_translator	# ※ 轉換標點符號
-    - script_translator	# ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
+#    - echo_translator	# ※ 沒有其他候選字時，回顯輸入碼〔輸入碼可以Shift+Enter上屛〕
+#    - punct_translator	# ※ 轉換標點符號
+#    - script_translator	# ※ 腳本翻譯器，用於拼音、粵拼等等基於音節表的輸入方案●此項可加載多個實例，後接@+翻譯器名〔如：pinyin、jyutping等〕
     - table_translator	#翻譯_打過的字-優先出●碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，此項可加載多個實例，後接@+翻譯器名〔如：cangjie、wubi等〕
     - reverse_lookup_translator  # ※ 反查翻譯器，用另一種編碼方案查碼
   filters:		# 四、這批組件過濾翻譯的結果
     - simplifier	# ※ 繁簡轉換
     - uniquifier	# ※ 過濾重複的候選字，有可能來自繁簡轉換
+    - single_char_filter  #單字優先
 
 menu:		#菜單選項
   alternative_select_keys: "1234567890"	#重碼選擇鍵，如沒有寫-預設 ctrl+123456789
-  page_size: 6	#選單 每頁 顯示 個數
+  page_size: 7	#選單 每頁 顯示 個數
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz,.'[]"
@@ -76,6 +77,10 @@ translator:
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
   comment_format:	#menu 提示 字碼 顯示
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
+
+abc_segmentor:
+  extra_tags:
+    - reverse_lookup  # 與拼音（反查碼）混打
 
 reverse_lookup:
   dictionary: terra_pinyin
