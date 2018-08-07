@@ -60,7 +60,7 @@ menu:		#菜單選項
   page_size: 7	#選單 每頁 顯示 個數
 
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz,.'[]"
+  alphabet: "abcdefghijklmnopqrstuvwxyz,.'[];"
   delimiter: " "
 
 translator:
